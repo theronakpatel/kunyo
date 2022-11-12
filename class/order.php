@@ -6,20 +6,8 @@
 class order
 {
 
-	/**
-	 * con
-	 *
-	 * @var mixed
-	 */
-	public $con;
-
-	/**
-	 * customer_id
-	 *
-	 * @var mixed
-	 */
-	public $customer_id;
-
+	private $con;
+	private $customer_id;
 
 	/**
 	 * __construct
