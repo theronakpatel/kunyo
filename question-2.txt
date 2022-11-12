@@ -1,0 +1,16 @@
+SELECT 
+	count(o.Order_ID) AS Number_Of_Order , SUM(sub_op.Normal_Price_Per_Order) AS Total_Sales_Amount
+FROM 
+	Orders o
+INNER JOIN 
+	(
+		SELECT  
+			Orders_Product.Order_ID , SUM(Orders_Product.Normal_Price) AS Normal_Price_Per_Order, SUM(Orders_Product.Promotion_Price) AS Promotion_Price_Per_Order
+		FROM 
+			Orders_Product  
+		GROUP BY  o.Order_ID
+	) sub_op
+	ON o.Order_ID = sub_op.Order_ID
+WHERE 
+	o.Sales_Type = 'Normal' 
+GROUP BY  o.Order_ID
