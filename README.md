@@ -17,3 +17,7 @@ Please provide the following:
 
 3. PHP functions
 - Please find it in `class/order.php`.
+
+
+Question:2 
+- Please find it in `question-2.txt` file. 
