@@ -13,4 +13,3 @@ INNER JOIN
 	ON o.Order_ID = sub_op.Order_ID
 WHERE 
 	o.Sales_Type = 'Normal' 
-GROUP BY  o.Order_ID
