@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Creates a signing link for a document with the given document ID and payload.
  *
