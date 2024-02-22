@@ -124,6 +124,7 @@ class order
 	 */
 	function getRewardPoint()
 	{
+		
 		$get_reward = "SELECT reward_points from customer where customer_id = '$this->customer_id'";
 		$result = mysqli_query($this->con, $get_reward);
 		if ($result->num_rows > 0) {
