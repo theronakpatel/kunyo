@@ -23,7 +23,6 @@ class order
 			exit(); 
 		}
 	}
-	
 	function addReward(object $order)
 	{
 	    if (strtoupper($order->status) === 'COMPLETE') {
