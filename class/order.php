@@ -1,14 +1,11 @@
 <?php
-
 /**
  * order
  */
 class order
 {
-
 	private $con;
 	private $customer_id;
-
 	/**
 	 * __construct
 	 *
