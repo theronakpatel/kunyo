@@ -30,7 +30,6 @@ class Signnow{
         $this->password    = signow_password;
         $this->signow_url  = signow_url;
     }
-
     /**
      * Authorizes the user and retrieves the access token.
      *
