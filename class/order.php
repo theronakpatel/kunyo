@@ -28,64 +28,57 @@ class order
 	}
 
 
-	/**
-	 * addReward
-	 * Descripption: 1. Customers will be rewarded with Points when Sales Order in “Complete” status.	
-	 * @param  object $order
-	 * @return void
-	 */
 	function addReward(object $order)
 	{
-		if ('COMPLETE' === strtoupper($order->status)) {
-			$price = $order->price;
-			$currency = $order->currency;
-			if ($currency != 'USD') {
-				$price = $this->convertCurrency($currency, 'USD', $price);
-			}
-			$reward_points = $price;
-			$reward_date = date('Y-m-d H:i:s');
-			$reward_expiry_date = date('Y-m-d', strtotime('+1 year')) . '23:59:59';
-			$reward_status = 'credit';  // or debit
-			$insert_query = "INSERT INTO customer_rewards (customer_id, reward_point , reward_status, reward_date , reward_expiry_date) VALUES ($this->customer_id,  $reward_points, $reward_status, $reward_date , $reward_expiry_date)";
-			mysqli_query($this->con, $insert_query);
-
-			// I assume , reward_points field is at customer table
-			$update_query = "UPDATE customer SET reward_points = reward_points + $reward_points  WHERE customer_id = '$this->customer_id'";
-			mysqli_query($this->con, $update_query);
-
-			// I assumre cron will run to remove expired rewards daily.
-
-		} else {
-			return;
-		}
+	    if (strtoupper($order->status) === 'COMPLETE') {
+	        $price = $order->price;
+	        $currency = $order->currency;
+	        
+	        if ($currency !== 'USD') {
+	            $price = convertCurrency($currency, 'USD', $price);
+	        }
+	        
+	        $reward_points = $price;
+	        $reward_date = date('Y-m-d H:i:s');
+	        $reward_expiry_date = date('Y-m-d', strtotime('+1 year')) . '23:59:59';
+	        $reward_status = 'credit'; // or debit
+	        
+	        $insert_query = "INSERT INTO customer_rewards (customer_id, reward_point , reward_status, reward_date , reward_expiry_date) VALUES ($this->customer_id,  $reward_points, $reward_status, $reward_date , $reward_expiry_date)";
+	        mysqli_query($this->con, $insert_query);
+	
+	        $update_query = "UPDATE customer SET reward_points = reward_points + $reward_points  WHERE customer_id = '$this->customer_id'";
+	        mysqli_query($this->con, $update_query);
+	
+	        // Assuming a cron job will run to remove expired rewards daily.
+	    }
 	}
-
-
+	
 	/**
-	 * convertCurrency
+	 * Convert currency from one to another
 	 *
-	 * @param  string $currency_from
-	 * @param  string $currency_to
-	 * @param  float $currency_input
+	 * @param string $currency_from
+	 * @param string $currency_to
+	 * @param float $currency_input
 	 * @return float
 	 */
 	function convertCurrency(string $currency_from, string $currency_to, float $currency_input): float
 	{
-		$yql_base_url = "http://query.yahooapis.com/v1/public/yql";
-		$pair = $currency_from . $currency_to;
-		$query = 'select * from yahoo.finance.xchange where pair in ("' . $pair . '")';
-		$query_url = $yql_base_url . "?q=" . urlencode($query) . "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-		
-		$curl = curl_init($query_url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		$response = curl_exec($curl);
-		curl_close($curl);
-		
-		$json_data = json_decode($response, true);
-		$rate = $json_data['query']['results']['rate']['Rate'];
-		
-		return (float) $currency_input * $rate;
+	    $yql_base_url = "http://query.yahooapis.com/v1/public/yql";
+	    $pair = $currency_from . $currency_to;
+	    $query = 'select * from yahoo.finance.xchange where pair in ("' . $pair . '")';
+	    $query_url = $yql_base_url . "?q=" . urlencode($query) . "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+	    
+	    $curl = curl_init($query_url);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	    $response = curl_exec($curl);
+	    curl_close($curl);
+	    
+	    $json_data = json_decode($response, true);
+	    $rate = $json_data['query']['results']['rate']['Rate'];
+	    
+	    return (float) $currency_input * $rate;
 	}
+
 
 	/**
 	 * redeemRewardPoint
