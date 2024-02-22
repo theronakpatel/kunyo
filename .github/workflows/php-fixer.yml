@@ -10,7 +10,7 @@ on:
 
 jobs:
   phpcsfixer:
-    name: Run PHPStan
+    name: Run PHP-CS-FIXER
     runs-on: ubuntu-latest
 
     steps:
