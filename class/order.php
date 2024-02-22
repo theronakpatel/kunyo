@@ -24,7 +24,6 @@ class order
 		}
 	}
 
-
 	function addReward(object $order)
 	{
 	    if (strtoupper($order->status) === 'COMPLETE') {
