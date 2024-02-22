@@ -48,9 +48,6 @@ class Signnow{
              $this->password = CONFIG['sign_now_password_sandbox'];
              $this->basic_token = CONFIG['sign_now_token_sandbox'];
         }
-
-
-
         $postFields = array(
             'username' => $this->username,
             'password' => $this->password,
