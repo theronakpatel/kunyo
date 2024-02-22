@@ -8,7 +8,6 @@ class order
 
 	private $con;
 	private $customer_id;
-
 	/**
 	 * __construct
 	 *
@@ -17,10 +16,8 @@ class order
 	 */
 	function __construct($name)
 	{
-		$this->customer_id = $_SESSION['customer_id']; // Thsi is depends on how we treat custoomer, I assume the user is loggedin user (not guest)
-
+		$this->customer_id = $_SESSION['customer_id'] ?? ''; // Thsi is depends on how we treat custoomer, I assume the user is loggedin user (not guest)
 		$this->con = mysqli_connect("localhost", "my_user", "my_password", "my_db");
-
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -92,14 +89,13 @@ class order
 	{
 		$price = $order->price;
 		$reward_points = $this->getRewardPoint();
-		$total_redemption_value = $reward_points * 0.01;
+		$reward_percentage = 0.01;
+		$total_redemption_value = $reward_points * $reward_percentage;
 
 		$price_after_redemption = $price - $total_redemption_value;
 		if ($price_after_redemption < 0) {
 			$price_after_redemption = 0;
 		}
-
-		
 		$reward_points = $price;
 		$reward_date = date('Y-m-d H:i:s');
 		$reward_expiry_date = date('Y-m-d H:i:s');
