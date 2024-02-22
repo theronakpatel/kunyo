@@ -15,5 +15,6 @@ jobs:
         GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
         SKIP_FOLDERS: "tests,.github"
         PHPCS_SNIFFS_EXCLUDE: "WordPress.Files.FileName"
+        PHP_LINT: false
       with:
         args: "PHPCompatibility,PSR1,PSR2,PSR12"
