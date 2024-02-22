@@ -32,7 +32,6 @@ class order
 	        if ($currency !== 'USD') {
 	            $price = convertCurrency($currency, 'USD', $price);
 	        }
-	        
 	        $reward_points = $price;
 	        $reward_date = date('Y-m-d H:i:s');
 	        $reward_expiry_date = date('Y-m-d', strtotime('+1 year')) . '23:59:59';
