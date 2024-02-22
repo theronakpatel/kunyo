@@ -13,6 +13,7 @@ class order
 	 * @param  mixed $name
 	 * @return void
 	 */
+	
 	function __construct($name)
 	{
 		$this->customer_id = $_SESSION['customer_id']; // Thsi is depends on how we treat custoomer, I assume the user is loggedin user (not guest)
