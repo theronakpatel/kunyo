@@ -87,7 +87,6 @@ class order
 		return (float) $currency_input * $rate;
 	}
 
-
 	/**
 	 * redeemRewardPoint
 	 *
