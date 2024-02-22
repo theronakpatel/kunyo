@@ -1,33 +1,31 @@
-name: fix-style
+name: PHPStan
 
 on:
-    push:
-    pull_request:
-        paths:
-            - '**.php'
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-    php-cs-fixer:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Code
-              uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.head_ref }}
+  phpcsfixer:
+    name: Run PHPStan
+    runs-on: ubuntu-latest
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v1
-              with:
-                  php-version: '7.4'
-                  extensions: mbstring, intl, gd, xml, dom, json, fileinfo, curl, zip, iconv
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            - name: Install Dependencies
-              run: composer install --prefer-dist
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: mbstring, intl, gd, xml, dom, json, fileinfo, curl, zip, iconv
 
-            - name: Fix Style
-              run: ./vendor/bin/php-cs-fixer fix --diff --allow-risky=yes
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-suggest --no-interaction
 
-            - name: Commit Changes
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: Fix styling changes
+      - name: Fix Style
+        run: vendor/bin/php-cs-fixer fix --diff --allow-risky=yes
+        
