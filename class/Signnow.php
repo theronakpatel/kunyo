@@ -91,9 +91,6 @@ class Signnow{
      * @return int The id of the created document.
      */
     function create_document_from_template($type, $sandbox = false){
-
-
-
         if($type == "ROE"){
             $document_name = "RonakTest6 Thunderbird - REO Form";
 
