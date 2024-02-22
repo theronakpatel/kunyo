@@ -98,15 +98,12 @@ class order
 		if ($price_after_redemption < 0) {
 			$price_after_redemption = 0;
 		}
-
-		
 		$reward_points = $price;
 		$reward_date = date('Y-m-d H:i:s');
 		$reward_expiry_date = date('Y-m-d H:i:s');
 		$reward_status = 'debit';  // or credit
 		$insert_query = "INSERT INTO customer_rewards (customer_id, reward_point , reward_status, reward_date , reward_expiry_date) VALUES ($this->customer_id,  $reward_points, $reward_status, $reward_date , $reward_expiry_date)";
 		mysqli_query($this->con, $insert_query);
-
 		$update_query = "UPDATE customer SET reward_points = reward_points - $reward_points  WHERE customer_id = '$this->customer_id'";
 		mysqli_query($this->con, $update_query);
 
