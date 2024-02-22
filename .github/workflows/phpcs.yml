@@ -16,4 +16,4 @@ jobs:
         SKIP_FOLDERS: "tests,.github"
         PHPCS_SNIFFS_EXCLUDE: "WordPress.Files.FileName"
       with:
-        args: "WordPress,WordPress-Core,WordPress-Docs"
+        args: "PHPCompatibility,PSR1,PSR2,PSR12"
