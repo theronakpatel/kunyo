@@ -27,4 +27,4 @@ jobs:
         run: composer install --no-progress --no-suggest --no-interaction
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --level=7 --no-progress --no-interaction --autoload-file=vendor/autoload.php .
+        run: vendor/bin/phpstan analyse --level=7 --no-progress --no-interaction .
