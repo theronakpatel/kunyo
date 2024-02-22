@@ -103,8 +103,6 @@ class order
 		if ($price_after_redemption < 0) {
 			$price_after_redemption = 0;
 		}
-
-		
 		$reward_points = $price;
 		$reward_date = date('Y-m-d H:i:s');
 		$reward_expiry_date = date('Y-m-d H:i:s');
