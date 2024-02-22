@@ -16,7 +16,6 @@
  * @return string The signing link for the document.
  */
 class Signnow{
-
     public $basic_token;
     public $access_token;
     public $refresh_token;
