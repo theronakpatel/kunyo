@@ -20,7 +20,7 @@ class Signnow{
     public $access_token;
     public $refresh_token;
     public $signow_url;
-    public $username;
+    public $username; 
     public $password;
     function __construct()
     {
