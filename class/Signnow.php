@@ -42,7 +42,6 @@ class Signnow{
     function authorize($sandbox = false){
 
         $curl = curl_init();
-
         if($sandbox){
              $this->username = CONFIG['sign_now_username_sandbox'];
              $this->password = CONFIG['sign_now_password_sandbox'];
