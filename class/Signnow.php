@@ -209,8 +209,6 @@ class Signnow{
      * @return void
      */
     function create_embedded_invites($document_id, $email, $role_id ){
-
-
         $curl = curl_init();
 
         $data = [
@@ -223,7 +221,6 @@ class Signnow{
                 ],
             ],
         ];
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => $this->signow_url.'/v2/documents/'.$document_id.'/embedded-invites',
             CURLOPT_RETURNTRANSFER => true,
