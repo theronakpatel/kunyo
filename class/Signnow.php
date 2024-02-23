@@ -131,8 +131,6 @@ class Signnow{
 
         return $response['id'];
     }
-
-
     /**
      * Retrieves the organization id of the user.
      *
