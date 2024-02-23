@@ -125,7 +125,6 @@ class Signnow{
                 'Authorization: Bearer '.$this->access_token
             ),
         ));
-
         $response = curl_exec($curl);
         $response = json_decode($response, true);
 
