@@ -102,7 +102,6 @@ class Signnow{
                 $template_id = CONFIG['signnow_application_form_sandbox_tempalate_id'];
             }
         }
-
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
