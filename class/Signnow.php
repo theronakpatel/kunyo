@@ -6,7 +6,7 @@
  * The response is then parsed as JSON and the signing link is extracted from it.
  *
  * @param int $document_id The ID of the document to create a signing link for.
- * @param array $payload The payload containing the required data for creating the signing link.
+ * @param array $payload The payload containing the required data for creating the signing link. 
  *   - 'firstname': The first name of the signer.
  *   - 'lastname': The last name of the signer.
  *   - 'email': The email of the signer.
