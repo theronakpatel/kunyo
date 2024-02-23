@@ -50,8 +50,6 @@ class Signnow{
             'password' => $this->password,
             'grant_type' => 'password',
         );
-
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => $this->signow_url.'/oauth2/token',
             CURLOPT_RETURNTRANSFER => true,
