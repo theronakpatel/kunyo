@@ -12,19 +12,15 @@ jobs:
   phpstan:
     name: Run PHPStan
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
           extensions: mbstring, zip, intl  # Add necessary PHP extensions here
-
       - name: Install Composer dependencies
         run: composer install --no-progress --no-suggest --no-interaction
-
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse --level=7 --no-progress --no-interaction .
